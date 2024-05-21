@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Terra Della Pasta</title>
+        <link rel="stylesheet" href="style.css"> 
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <!---Header---> 
+        <header class="text-gray-600 body-font">
+          <div class="container mx-auto flex flex-wrap p-0 flex-col md:flex-row items-center">
+              <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+                  <a href="#home" class="mr-5 hover:text-gray-900">Home</a>
+                  <a href="#about" class="mr-5 hover:text-gray-900">About Us</a>
+                  <a href="#menu" class="mr-5 hover:text-gray-900">Menu</a>
+                  <a href="#contact" class="hover:text-gray-900">Contact</a>
+              </nav>
+              <div class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center justify-center lg:justify-center mb-4 md:mb-0">
+                  <img src="images/Vineyard.png" alt="Logo" class="w-26 h-15">
+              </div>
+              <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+                <a href="https://housinganywhere.com/Italy/how-to-eat-like-a-local" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-orange-400 rounded text-base mt-4 md:mt-0">
+                  Discover Italy
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+          </div>
+      </header>
+
+          <!--Hero-->
+          <div id="home">
+            <!--home section content-->
+        </div>
+          <section class="text-gray-600 body-font">
+            <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+              <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Welcome to the world
+                  <br class="hidden lg:inline-block">of Pasta
+                </h1>
+                <p class="mb-8 leading-relaxed">Welcome to Terra Della Pasta, where tradition meets taste. Our pasta is handmade daily using the finest ingredients, bringing you the true essence of Italian cuisine. Whether you're craving a classic spaghetti carbonara or a rich and creamy fettuccine Alfredo, our dishes promise a culinary journey through Italy. Join us for a meal that's crafted with love and served with passion.</p>
+                <div class="flex justify-center">
+                  <button class="relative px-8 py-2 rounded-md bg-white isolation-auto z-10 border-2 border-orange-400 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-orange-400 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })"> Explore it
+                  </button>
+                </div>
+              </div>
+              <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                <img class="object-cover object-center rounded" alt="hero" src="images/herospasta.png" style="width: 720px; height: 600px;">
+              </div>
+            </div>
+          </section>
+
+          <!--Slider-->
+          <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+          <main class="grid min-h-screen w-full place-content-center">
+          <div x-data="imageSlider" class="relative mx-auto max-w-8xl overflow-hidden rounded-md p-2 sm:p-4">
+          <div class="absolute right-5 top-5 z-10 rounded-full bg-gray-600 px-2 text-center text-sm text-white">
+            <span x-text="currentIndex"></span>/<span x-text="images.length"></span>
+          </div>
+
+          <button @click="previous()" class="absolute left-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-gray-100 shadow-md">
+            <i class="fas fa-chevron-left text-2xl font-bold text-gray-500"></i>
+          </button>
+
+          <button @click="forward()" class="absolute right-5 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-gray-100 shadow-md">
+            <i class="fas fa-chevron-right text-2xl font-bold text-gray-500"></i>
+          </button>
+
+          <div class="relative h-96" style="width: 80rem">
+            <template x-for="(image, index) in images">
+                <div x-show="currentIndex == index + 1" x-transition:enter="transition transform duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition transform duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute top-0">
+                    <img :src="image" alt="image" class="rounded-sm" />
+                </div>
+            </template>
+        </div>
+    </div>
+</main>
+
+<script>
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("imageSlider", () => ({
+      currentIndex: 1,
+      images: [
+        "images/fresh.png",
+        "images/pasta2.png",
+        "images/garden.png",
+        "images/pasta4.png",
+      ],
+      previous() {
+        if (this.currentIndex > 1) {
+          this.currentIndex = this.currentIndex - 1;
+        }
+      },
+      forward() {
+        if (this.currentIndex < this.images.length) {
+          this.currentIndex = this.currentIndex + 1;
+        }
+      },
+    }));
+  });
+</script>
+
+
+          <!--About Us-->
+          <div id="about">
+            <!--about us section-->
+        </div>
+          <div class="text-center mt-12">
+            <h1 class="text-4xl font-semibold text-gray-900">About Us</h1>
+          <section class="text-gray-600 body-font">
+            <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+              <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+                <img class="object-cover object-center rounded" alt="hero" src="images/oldpasta.png" style="width: 720px; height: 600px;">
+              </div>
+              <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+                <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Flavor comes from our
+                  <br class="hidden lg:inline-block">history and experience
+                </h1>
+                <p class="mt-4 text-lg text-gray-600">Terra Della Pasta is a family-owned pasta restaurant located in the heart of the city. Established in 1967 by Francesco and Emilia, our restaurant has been serving authentic Italian pasta dishes made with love and passion.</p>
+                <p class="mt-4 text-lg text-gray-600">Our mission is to provide our customers with an unforgettable dining experience by offering delicious pasta creations prepared with the freshest ingredients sourced from local farmers and producers.</p>
+                <p class="mt-4 text-lg text-gray-600">At Terra Della Pasta, customer satisfaction is our top priority. We strive to exceed our guests' expectations with exceptional service and mouthwatering pasta dishes that keep them coming back for more.</p>
+                <p class="mt-4 text-lg text-gray-600">Join us and indulge in the rich flavors of Italy right here in your own neighborhood. Buon appetito!</p>
+                <div class="flex justify-center"> 
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!--Menu-->
+          <div id="menu">
+            <!--menu section-->
+        </div>
+          <div class="text-center mt-12">
+            <h1 class="text-4xl font-semibold text-gray-900">Menu</h1>
+          <section class="text-gray-600 body-font">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-wrap w-full mb-20">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                  <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Menu Speciale</h1>
+                  <div class="h-1 w-20 bg-yellow-400 rounded"></div>
+                </div>
+                <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Indulge in a culinary journey at Terra Della Pasta with our diverse menu of exquisite Italian dishes. From classic pasta favorites like Spaghetti Carbonara and Fettuccine Alfredo to gourmet specialties such as Lobster Ravioli and Truffle Linguine, there's something to tantalize every palate. Pair your meal with a selection from our curated wine list or enjoy a refreshing cocktail crafted by our talented mixologists. Whether you're craving a comforting bowl of pasta or seeking a fine dining experience, Terra Della Pasta promises an unforgettable meal that celebrates the art of Italian cuisine.</p>
+              </div>
+              <div class="flex flex-wrap -m-4">
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg border-2 border-transparent hover:border-orange-400 transition duration-500 ease-in-out">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="images/spaghetti.png" style="width: 720px; height: 400px;" alt="content">
+                    <h3 class="tracking-widest text-yellow-400 text-xs font-medium title-font">Il Favorito</h3>
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Varietà di Spaghetti</h2>
+                    <p class="leading-relaxed text-base">At Terra Della Pasta, our spaghetti dishes are a testament to the rich and diverse culinary heritage of Italy. Each variety is crafted with care, using the finest ingredients to bring you an authentic taste of Italy.</p>
+                  </div>
+                </div>
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg border-2 border-transparent hover:border-orange-400 transition duration-500 ease-in-out">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="images/penne.png" style="width: 720px; height: 400px;" alt="content">
+                    <h3 class="tracking-widest text-yellow-400 text-xs font-medium title-font">Il Più Delizioso</h3>
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Varietà di Penne</h2>
+                    <p class="leading-relaxed text-base">At Terra Della Pasta, our penne dishes are crafted to bring you the best of Italian cuisine, offering a variety of flavors that cater to all tastes.</p>
+                  </div>
+                </div>
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg border-2 border-transparent hover:border-orange-400 transition duration-500 ease-in-out">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="images/lasagne.png" style="width: 720px; height: 400px;" alt="content">
+                    <h3 class="tracking-widest text-yellow-400 text-xs font-medium title-font">Tradizionale</h3>
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Specie di Lasagne</h2>
+                    <p class="leading-relaxed text-base">At Terra Della Pasta, our lasagna dishes are a celebration of traditional Italian comfort food, each crafted to perfection with layers of rich flavors.</p>
+                  </div>
+                </div>
+                <div class="xl:w-1/4 md:w-1/2 p-4">
+                  <div class="bg-gray-100 p-6 rounded-lg border-2 border-transparent hover:border-orange-400 transition duration-500 ease-in-out">
+                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="images/wine.png" style="width: 720px; height: 400px;" alt="content">
+                    <h3 class="tracking-widest text-yellow-400 text-xs font-medium title-font">Attraente</h3>
+                    <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Vini Speciali</h2>
+                    <p class="leading-relaxed text-base">At Terra Della Pasta, we believe that a great meal deserves an equally great drink. Our extensive selection of wines and beverages is carefully curated to complement our menu and enhance your dining experience.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!--Testimonial-->
+          <div class="text-center mt-12">
+            <h1 class="text-4xl font-semibold text-gray-900">Testimonial</h1>
+          <section class="text-gray-600 body-font">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="xl:w-1/2 lg:w-3/4 w-full mx-auto text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block w-8 h-8 text-gray-400 mb-8" viewBox="0 0 975.036 975.036">
+                  <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+                </svg>
+                <p class="leading-relaxed text-lg">"The flavors at Terra Della Pasta are truly exceptional. Each dish reflects the passion and expertise of the chefs. The Spaghetti alla Carbonara was perfectly creamy with a rich, savory flavor. The Penne Arrabbiata had the right amount of spice, and the Lasagna was layered with a delightful mix of textures and tastes. This restaurant brings the authentic taste of Italy to every plate. Bravo! The wine selection at Terra Della Pasta is equally impressive. Each glass of wine complements the dishes perfectly, enhancing the overall dining experience. The variety of Italian wines available, from robust reds to crisp whites, is a testament to the restaurant's dedication to providing an authentic Italian experience. Salute!"</p>
+                <span class="inline-block h-1 w-10 rounded bg-orange-400 mt-8 mb-6"></span>
+                <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">CARLO CRACCO</h2>
+                <p class="text-gray-500">Famous Italian Chef</p>
+              </div>
+            </div>
+          </section>
+
+          <!--Contact Us-->
+          <div id="contact">
+            <!--contact section-->
+        </div>
+          <section class="text-gray-600 body-font relative">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Contact Us</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">We value our customers' feedback and inquiries. If you have any questions, comments, or would like to make a reservation, please don't hesitate to reach out to us. We look forward to hearing from you!</p>
+              </div>
+              <div class="lg:w-1/2 md:w-2/3 mx-auto">
+                <div class="flex flex-wrap -m-2">
+                  <div class="p-2 w-1/2">
+                    <div class="relative">
+                      <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+                      <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                  </div>
+                  <div class="p-2 w-1/2">
+                    <div class="relative">
+                      <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+                      <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                  </div>
+                  <div class="p-2 w-full">
+                    <div class="relative">
+                      <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+                      <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-yellow-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                    </div>
+                  </div>
+                  <div class="p-2 w-full">
+                    <button class="relative px-8 py-2 rounded-md bg-white isolation-auto z-10 border-2 border-orange-400
+                    before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full  before:bg-orange-400 before:-z-10  before:aspect-square before:hover:scale-150 overflow-hidden before:hover:duration-700">Send it!</button>
+                  </div>
+                  <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
+                    <a class="text-yellow-500">terradellapasta@gmail.com</a>
+                    <p class="leading-normal my-5">Via Pietro Colletta, 17 80139 Napoli NA, İtalya
+                      <br>80139 Napoli NA, Italy
+                    </p>
+                    <!--Tooltips-->
+                    <style>
+                      .icon-hover {
+                        transition: color 0.3s;
+                      }
+                    
+                      .icon-hover:hover {
+                        color: orange;
+                      }
+                    </style>
+                    
+                    <span class="inline-flex">
+                      <a href="https://www.facebook.com" target="_blank" class="text-gray-500 icon-hover">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                        </svg>
+                      </a>
+                      <a href="https://www.twitter.com" target="_blank" class="ml-4 text-gray-500 icon-hover">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                        </svg>
+                      </a>
+                      <a href="https://www.instagram.com/codeislady/" target="_blank" class="ml-4 text-gray-500 icon-hover">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                        </svg>
+                      </a>
+                      <a href="https://www.whatsapp.com" target="_blank" class="ml-4 text-gray-500 icon-hover">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                          <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                        </svg>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!--Sign-->
+          <img src="images/Vineyard.png" alt="Logo" class="w-32 h-auto mx-auto mb-4">
+
+        
+    </body>
+</html>
+
